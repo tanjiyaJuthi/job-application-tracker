@@ -20,6 +20,10 @@ const allJobs = document.querySelectorAll('#all-jobs .job-list');
 let jobState = [];
 let currentJob = 'all';
 
+// machine: to get job type from id
+const getJobTypeFromId = (id) => {
+    return id.replace(/-jobs$/, '');
+};
 
 // switching between buttons
 trackerBtns.forEach(trackerBtn => {
