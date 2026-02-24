@@ -20,6 +20,28 @@ const allJobs = document.querySelectorAll('#all-jobs .job-list');
 let jobState = [];
 let currentJob = 'all';
 
+// retrieve data and store in jobState
+allJobs.forEach(jobList => {
+    const companyName = jobList.querySelector('.company-name').innerText;
+    const jobTitle = jobList.querySelector('.job-title').innerText;
+    const jobLocation = jobList.querySelector('.job-location').innerText;
+    const jobType = jobList.querySelector('.job-type').innerText;
+    const salaryRange = jobList.querySelector('.salary-range').innerText;
+    const jobDescription = jobList.querySelector('.job-description').innerText;
+
+    jobState.push({
+        companyName,
+        jobTitle,
+        jobLocation,
+        jobType,
+        salaryRange,
+        jobDescription,
+        status: 'all' // default
+    });
+
+    // console.log(jobState);
+});
+
 // machine: to get job type from id
 const getJobTypeFromId = (id) => {
     return id.replace(/-jobs$/, '');
