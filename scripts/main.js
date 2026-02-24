@@ -20,6 +20,41 @@ const allJobs = document.querySelectorAll('#all-jobs .job-list');
 let jobState = [];
 let currentJob = 'all';
 
+// update job count
+const countUpdate = () => {
+    // calculate total count
+    const totalCount = jobState.length;
+
+    // calculate interview count
+    const interviewCount = jobState.filter(job =>
+        job.status === 'interview'
+    ).length;
+
+    // calculate rejected count
+    const rejectedCount = jobState.filter(job =>
+        job.status === 'rejected'
+    ).length;
+
+    // update the counter
+    totalJob.innerText = totalCount;
+    interviewJob.innerText = interviewCount;
+    rejectedJob.innerText = rejectedCount;
+
+    // check the current count
+    const currentCount = 
+        currentJob === 'all'
+            ? totalCount
+            : currentJob === 'interview'
+            ? interviewCount
+            : rejectedCount;
+
+    // update job or jobs with job number
+    jobNumber.innerText = `${currentCount} ${currentCount === 1 ? 'Job'  : 'Jobs'}`;
+};
+
+// set count when page loads
+countUpdate();
+
 // retrieve data and store in jobState
 allJobs.forEach(jobList => {
     const companyName = jobList.querySelector('.company-name').innerText;
