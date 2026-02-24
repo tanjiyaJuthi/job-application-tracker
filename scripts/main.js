@@ -20,6 +20,46 @@ const allJobs = document.querySelectorAll('#all-jobs .job-list');
 let jobState = [];
 let currentJob = 'all';
 
+// event delegation for updating job status
+jobContainer.addEventListener('click', (event) => {
+    // console.log(event.target.closest('.job-list'));
+    // get the clicked job list
+    const jobList = event.target.closest('.job-list');
+
+    if (!jobList) return;
+
+    const companyName = jobList.querySelector('.company-name').innerText;
+    const jobTitle = jobList.querySelector('.job-title').innerText;
+    // console.log(companyName, jobTitle);
+
+    // get job by job state
+    const job = jobState.find(job =>
+        job.companyName === companyName
+        && job.jobTitle === jobTitle
+    );
+    
+    // console.log(job);
+
+    if (!job) return;
+    
+    // update status by clicking button
+    if (event.target.classList.contains('interview-btn')) {
+        job.status = 'interview';
+    } else if (event.target.classList.contains('reject-btn')) {
+        job.status = 'rejected';
+    } else if (event.target.closest('.job-remover')) {
+        jobState = jobState.filter(job => 
+            job.companyName !== companyName
+            || job.jobTitle !== jobTitle
+        );
+
+        // console.log(jobState);
+    }
+
+    renderJobs(currentJob);
+    countUpdate();
+});
+
 // render jobs based on status
 const renderJobs = (jobData) => {
     // clear all job list before rendering
