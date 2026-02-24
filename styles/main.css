@@ -1,0 +1,31 @@
+.geist-font {
+    font-family: "Geist", sans-serif;
+    font-optical-sizing: auto;
+}
+
+.primary-color {
+    color: #002C5C;
+}
+
+.secondary-color {
+    color: #10B981;
+}
+
+.tertiary-color {
+    color: #EF4444;
+} 
+
+.gray-color {
+    color: #64748B;
+}
+
+/* #job-number {
+    display: inline-flex;
+    white-space: nowrap;
+}*/
+
+.button-container .active {
+    background-color: #3B82F6;
+    color: white;
+    border-color: #3B82F6;
+}
